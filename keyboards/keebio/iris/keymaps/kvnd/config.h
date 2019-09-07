@@ -26,3 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
+
+#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRACKET
+#define RSPO_KEYS KC_RSFT, KC_RSFT, KC_RBRACKET
