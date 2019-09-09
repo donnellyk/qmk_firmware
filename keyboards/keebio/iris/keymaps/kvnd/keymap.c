@@ -9,7 +9,7 @@ extern keymap_config_t keymap_config;
 
 #define MRAISE MO(_RAISE)
 #define MLOWER MO(_LOWER)
-#define MOTHER MO(_OTHER)
+#define MOTHER TT(_OTHER)
 
 #define KC_ZALT MT(MOD_LALT, KC_Z)
 #define KC_TCTL MT(MOD_LCTL, KC_GRAVE)
@@ -29,9 +29,7 @@ extern keymap_config_t keymap_config;
 #define XCAUTHOR LSFT(LCTL(LGUI(KC_A))) // XCode - Toggle Author
 
 #define XRUNB LCTL(LGUI(KC_B)) // XCode - Run without Building
-
-#define ALWR MT(MLOWER, KC_ALRD)
-
+#define ALWR LT(_LOWER, KC_ALRD)
 
 
 #define XCHANGE LCTL(KC_GRAVE) // XCode - Change Editor
@@ -97,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_OTHER] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+     TG(_QWERTY), _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤

@@ -29,3 +29,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRACKET
 #define RSPO_KEYS KC_RSFT, KC_RSFT, KC_RBRACKET
+#define TAPPING_TOGGLE 2
