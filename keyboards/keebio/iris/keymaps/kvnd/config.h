@@ -18,7 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // #define USE_I2C
-#define EE_HANDS
+// #define EE_HANDS
+#define MASTER_LEFT
+
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
@@ -28,5 +30,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 8
 
 #define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRACKET
-#define RSPO_KEYS KC_RSFT, KC_RSFT, KC_RBRACKET
+#define RSPC_KEYS KC_RSFT, KC_RSFT, KC_RBRACKET
 #define TAPPING_TOGGLE 2
