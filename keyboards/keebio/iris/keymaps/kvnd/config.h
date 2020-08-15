@@ -30,13 +30,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
+
 #define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC
 #define LAPO_KEYS KC_LALT, KC_TRNS, KC_Z
 #define LCPO_KEYS KC_LCTL, KC_TRNS, KC_GRAVE
 // #define RSPC_KEY KC_RIGHT_CURLY_BRACE
 
 // #undef  TAPPING_TERM
-#define TAPPING_TERM 150
+#define TAPPING_TERM 125
 
 #define ONESHOT_TAP_TOGGLE 2
 #define TAPPING_TOGGLE 2
