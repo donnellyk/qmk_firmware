@@ -37,7 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define RSPC_KEY KC_RIGHT_CURLY_BRACE
 
 // #undef  TAPPING_TERM
-#define TAPPING_TERM 125
+#define TAPPING_TERM 175
+#define PERMISSIVE_HOLD
 
 #define ONESHOT_TAP_TOGGLE 2
 #define TAPPING_TOGGLE 2
