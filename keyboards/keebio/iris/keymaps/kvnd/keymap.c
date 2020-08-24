@@ -33,8 +33,9 @@
 #define HOME TO(_QWERTY)
 #define KC_XCODE TT(_XCODE)
 
-#define SPACE LT(_ARROW, KC_SPC)
-#define ENTER LT(_LOWER, KC_ENT)
+// #define SPACE LT(_ARROW, KC_SPC)
+// #define ENTER LT(_LOWER, KC_ENT)
+#define ARROW MO(_ARROW)
 
 #define _QWERTY 0
 #define _ARROW 1
@@ -70,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT , KC_Z,  KC_X,    KC_C,    KC_V,    KC_B,    KC_BSPC,          ___NO__, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RALT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_GRV, KC_LGUI, KC_ENT,                    SPACE,   KC_ALRD, KC_XCODE
+                                    KC_GRV, KC_LGUI, KC_ENT,                    KC_SPC,   ARROW, KC_XCODE
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
   
