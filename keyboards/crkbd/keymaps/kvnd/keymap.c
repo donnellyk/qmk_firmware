@@ -20,6 +20,8 @@
 
 #define KC_SWAP LCTL(KC_T)
 #define KC_ALRD LGUI(KC_SPACE) // Toggle Alfred
+#define KC_CMDE LGUI(KC_ENTER) // CMD + Enter
+
 
 #define KC_LOCK HYPR(KC_L) // Lock the screen via Alfred
 #define KC_SCST SHOT_MACRO // Screenshot Macro
@@ -56,19 +58,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
      KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,   KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, TAB_LEFT,KC_LBRC, KC_RBRC, KC_MINS, KC_EQL,                     KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT,TAB_RIGHT,  KC_GRV,\
+      _______, XXXXXXX,KC_LBRC, KC_RBRC, KC_MINS, KC_EQL,                     KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT,XXXXXXX,  _______,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, KC_LCBR, KC_RCBR, KC_UNDS, KC_PLUS,                      KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD,\
+      _______, KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, KC_PLUS,                      KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        _______,   _______,  _______,    _______, _______, _______ \
+                                        _______,   _______,  KC_CMDE,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
   ),
 
   [_XCODE] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, TAB_RIGHT, KC_BSPC,\
+     PWD_MACRO,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, TAB_RIGHT, KC_BSPC,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX,  TAB_LEFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX,KC_XNEW,KC_XCLOSE, XXXXXXX, KC_XFOCUS, \
+     XXXXXXX,TAB_LEFT,TAB_RIGHT, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX,KC_XNEW,KC_XCLOSE, XXXXXXX, KC_XFOCUS, \
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      XXXXXXX,  AUTHORS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  MINIMAP, KC_XBACK,KC_XFORWD,KC_XNEXT, XXXXXXX, \
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -80,10 +82,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
         switch(keycode) {
-            // case SHOT_MACRO:
-            //     SEND_STRING(SS_LSFT(SS_LGUI("4")));
-            //     SEND_STRING(" ");
-            //     return false;
+            case PWD_MACRO:
+                SEND_STRING("");
+                return false;
         }
     }
     return true;
