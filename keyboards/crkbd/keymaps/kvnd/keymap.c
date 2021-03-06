@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-
+#include "secrets.h"
 
 #define ___NO__ KC_NO
 
@@ -28,6 +28,7 @@
 #define KC_FCS HYPR(KC_F) // Trigger Focus
 
 #define KC_XCODE TT(_XCODE)
+#define KC_RLD LT(_RAISE, KC_LEAD) // LEAD, RAISE
 
 #define _QWERTY 0
 #define _RAISE 1
@@ -50,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RALT,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                              LT(_RAISE, KC_GRV), KC_LGUI,  KC_ENT,     KC_SPC, MO(_RAISE),  KC_XCODE \
+                              LT(_RAISE, KC_GRV), KC_LGUI,  KC_ENT,     KC_SPC,MO(_RAISE),  KC_XCODE \
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -62,19 +63,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, KC_PLUS,                      KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        _______,   _______,  KC_CMDE,    _______, _______, _______ \
+                                        _______,   _______,  KC_LEAD,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
   ),
 
   [_XCODE] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     PWD_MACRO,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, TAB_RIGHT, KC_BSPC,\
+     PWD_MACRO,XXXXXXX, XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9,                     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, TAB_RIGHT, KC_BSPC,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX,TAB_LEFT,TAB_RIGHT, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX,KC_XNEW,KC_XCLOSE, XXXXXXX, KC_XFOCUS, \
+     KC_MPLY,TAB_LEFT,TAB_RIGHT, KC_KP_4, KC_KP_5, KC_KP_6,                     XXXXXXX, XXXXXXX,KC_XNEW,KC_XCLOSE, XXXXXXX, KC_XFOCUS, \
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX,  AUTHORS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX,  MINIMAP, KC_XBACK,KC_XFORWD,KC_XNEXT, XXXXXXX, \
+     XXXXXXX,  XXXXXXX, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3,                     AUTHORS,  MINIMAP, KC_XBACK,KC_XFORWD,KC_XNEXT, XXXXXXX, \
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        _______,   _______,  _______,    _______, _______, _______ \
+                                        _______,   _______,KC_LEAD, TG(_QWERTY), _______, _______ \
                                       //`--------------------------'  `--------------------------'
   ),
 };
@@ -83,9 +84,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
         switch(keycode) {
             case PWD_MACRO:
-                SEND_STRING("");
+                SEND_STRING(secret_jmp);
                 return false;
         }
     }
     return true;
 }
+
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_Q) {
+      // Anything you can do in a macro.
+      SEND_STRING(secret_oneP);
+    }
+    SEQ_ONE_KEY(KC_J) {
+      // Anything you can do in a macro.
+      SEND_STRING(secret_jmp);
+    }
+    SEQ_ONE_KEY(KC_P) {
+      // Anything you can do in a macro.
+      SEND_STRING(secret_pin);
+    }
+
+    SEQ_ONE_KEY(KC_ENT) {
+      register_code(KC_LGUI);
+      register_code(KC_ENT);
+      unregister_code(KC_ENTER);
+      unregister_code(KC_LGUI);
+    }
+  }
+}
+
