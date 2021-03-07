@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TAP_TOGGLE 2
 #define TAPPING_TOGGLE 2
 
- #define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 300
+// #define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 350
 
 #endif
